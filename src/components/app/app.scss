@@ -1,0 +1,41 @@
+@import 'styles/variables.scss';
+
+.App {
+    min-height: 100vh;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: stretch;
+
+    header {
+        height: 5rem;
+        background-color: $dark-blue-green;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        padding: 0 1vw;
+
+        .logo {
+            font-size: 3rem;
+        }
+    }
+
+    footer {
+        height: 5rem;
+        background-color: $dark-blue-green;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        padding: 0 1vw;
+    }
+
+    section {
+        flex: 1;
+        background-color: $blue-green;
+        padding: 1vh 1vw;
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+}
