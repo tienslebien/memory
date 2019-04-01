@@ -1,0 +1,46 @@
+// Comme disait Picasso « les bons artistes copient, les grands artistes volent »
+// l'animation est inspirée par https://www.w3schools.com/howto/howto_css_flip_card.asp
+
+.Card {
+    background-color: transparent;
+    width: 100px;
+    height: 100px;
+    margin: 1px;
+    perspective: 1000px;
+}
+
+.Card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+}
+
+.Card.displayed .Card-inner {
+    transform: rotateY(180deg);
+}
+
+.Card-front,
+.Card-back {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+}
+
+.Card-front {
+    background-image: url(https://s3-eu-west-1.amazonaws.com/tpd/logos/595cae450000ff0005a600d6/0x0.png);
+    background-size: 100px;
+    display: block;
+    border: 0;
+    padding: 0;
+    margin: 0;
+}
+
+.Card-back {
+    background-image: url(https://static.oclock.io/challenges/tests-techniques/cards.png);
+    background-size: 100px;
+    transform: rotateY(180deg);
+}

@@ -1,0 +1,10 @@
+@import 'styles/variables.scss';
+
+.Game {
+    width: 920px;
+    padding: 10px;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    background-color: $light-blue-green;
+}
