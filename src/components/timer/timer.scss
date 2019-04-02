@@ -1,0 +1,33 @@
+@import "styles/variables.scss";
+
+.Timer {
+    width: 100%;
+    margin-top: 1rem;
+
+    &.ok {
+        background-color: $light-green;
+
+        &::-moz-progress-bar,
+        &::-webkit-progress-bar {
+            background-color: $green;
+        }
+    }
+
+    &.warning {
+        background-color: $light-yellow;
+
+        &::-moz-progress-bar,
+        &::-webkit-progress-bar {
+            background-color: $yellow;
+        }
+    }
+
+    &.danger {
+        background-color: $light-red;
+
+        &::-moz-progress-bar,
+        &::-webkit-progress-bar {
+            background-color: $red;
+        }
+    }
+}

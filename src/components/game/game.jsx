@@ -1,14 +1,23 @@
 import React, { useState } from 'react';
 
 import Card from 'components/card';
+import Timer from 'components/timer';
 
 import './game.scss';
 
-export default function Game({ cards }) {
+export default function Game({ cards, duration }) {
     // l'index des cartes que l'on est en train de retourner
     const [selected, setSelected] = useState([]);
     // l'index des cartes déjà trouvées.
     const [cardFound, setCardFound] = useState([]);
+
+    const gameOver = () => {
+        window.alert('Vous avez perduuuuuuuu !');
+    }
+
+    const gameDone = () => {
+        window.alert('Vous avez gagnééééééééé !');
+    }
 
     // Pour savoir si on doit afficher l'image ou le dos de la carte
     // On regarde si l'index de la carte fait partie des cartes en cours de selection et des cartes trouvées
@@ -34,6 +43,10 @@ export default function Game({ cards }) {
         }
     };
 
+    if (cardFound.length === cards.length) {
+        gameDone();
+    }
+
     return (
         <div className="Game">
             {cards.map((card, i) => (
@@ -46,6 +59,8 @@ export default function Game({ cards }) {
                     onSelect={onSelect(i)}
                 />
             ))}
+
+            <Timer duration={duration} onTimeUp={gameOver} />
         </div>
     );
 }
