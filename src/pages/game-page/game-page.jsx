@@ -2,25 +2,35 @@ import React, { useState } from 'react';
 
 import Card from 'components/card';
 import Timer from 'components/timer';
+import { getNewGame } from 'services/cards';
 
-import './game.scss';
+import './game-page.scss';
 
-export default function Game({ cards, duration }) {
+const gameDuration = 120;
+export default function GamePage() {
+    // Initialisation du jeu.
+    // On le sauve dans le state pour garder le même jeu
+    // à chaque rechargement du composant
+    const [cards] = useState(getNewGame());
+
     // l'index des cartes que l'on est en train de retourner
     const [selected, setSelected] = useState([]);
     // l'index des cartes déjà trouvées.
     const [cardFound, setCardFound] = useState([]);
 
     const gameOver = () => {
+        // eslint-disable-next-line no-alert
         window.alert('Vous avez perduuuuuuuu !');
-    }
+    };
 
     const gameDone = () => {
+        // eslint-disable-next-line no-alert
         window.alert('Vous avez gagnééééééééé !');
-    }
+    };
 
     // Pour savoir si on doit afficher l'image ou le dos de la carte
-    // On regarde si l'index de la carte fait partie des cartes en cours de selection et des cartes trouvées
+    // On regarde si l'index de la carte fait partie des cartes en cours de selection
+    // et des cartes trouvées
     const displayCard = cardIndex => [...selected, ...cardFound].includes(cardIndex);
 
     const onSelect = cardIndex => () => {
@@ -60,7 +70,7 @@ export default function Game({ cards, duration }) {
                 />
             ))}
 
-            <Timer duration={duration} onTimeUp={gameOver} />
+            <Timer duration={gameDuration} onTimeUp={gameOver} />
         </div>
     );
 }
