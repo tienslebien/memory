@@ -1,19 +1,29 @@
-import React from 'react';
-import { useRoutes, A } from 'hookrouter';
+import React, { useState } from 'react';
+import { useRoutes, A, navigate } from 'hookrouter';
 
 import GamePage from 'pages/game-page';
 import HomePage from 'pages/home-page';
 import NotFoundPage from 'pages/not-found-page';
+import SigninPage from 'pages/signin-page';
 
 import './base-page.scss';
 
-const routes = {
-    '/': () => <HomePage />,
-    '/game': () => <GamePage />,
-};
 
 export default function BasePage() {
-    const routeResult = useRoutes(routes) || <NotFoundPage />;
+    const [userId, setUserId] = useState(null);
+
+    const onSignin = (id) => {
+        setUserId(id);
+        navigate('/');
+    };
+    const routes = {
+        '/': () => () => <HomePage />,
+        '/game': () => connected => (connected ? <GamePage /> : navigate('/signin')),
+        '/signin': () => () => <SigninPage onSignin={onSignin} />,
+        '/signup': () => () => <SigninPage onSignin={onSignin} signup />,
+    };
+
+    const routeResult = useRoutes(routes)(userId) || <NotFoundPage />;
 
     return (
         <div className="App">
